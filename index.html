@@ -2,276 +2,640 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- CUSTOMIZE HERE: Update meta descriptions/keywords with your landscaping business info -->
-  <meta name="description" content="Professional Landscaping & Lawn Care Services in [Your City]">
-  <meta name="keywords" content="landscaping, lawn care, gardening, [Your City], local SEO">
+  <meta name="description" content="Professional Landscaping & Lawn Care Services in [Your City] - Transform your outdoor space with expert lawn maintenance, seasonal care, and beautiful garden designs">
+  <meta name="keywords" content="landscaping, lawn care, gardening, seasonal maintenance, garden design, [Your City], lawn service">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- CUSTOMIZE HERE: Update the <title> to your company name. -->
-  <title>Landscaping Co. - Transform Your Outdoor Space</title>
+  <title>Landscaping Co. | Professional Lawn & Garden Care</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* -- RESET & BASE STYLES -- */
+    :root {
+      --primary-color: #2b4d2b;
+      --secondary-color: #ff9900;
+      --accent-color: #4a7c59;
+      --text-color: #333;
+      --light-bg: #f7f7f7;
+      --white: #ffffff;
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: "Open Sans", Arial, sans-serif;
-      background: #fff;
-      color: #333;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--text-color);
       line-height: 1.6;
     }
+
+    h1, h2, h3, .site-title {
+      font-family: 'Montserrat', sans-serif;
+    }
+
     a {
       text-decoration: none;
       color: inherit;
+      transition: var(--transition);
     }
 
-    /* -- HEADER & NAV -- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header Styles */
     header {
-      background: #2b4d2b; /* Earthy green: ties to "nature-inspired" color scheme */
-      padding: 1rem;
+      background: var(--primary-color);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 0;
     }
+
     .site-title {
-      /* CUSTOMIZE HERE: Replace with your business name or logo text */
-      color: #fff;
-      font-size: 1.5rem;
-      font-weight: bold;
+      color: var(--white);
+      font-size: 1.8rem;
+      font-weight: 700;
     }
+
+    .nav-toggle {
+      display: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1rem;
-    }
-    nav a {
-      color: #fff;
-      font-weight: 600;
-    }
-    nav a:hover {
-      text-decoration: underline;
+      gap: 2rem;
     }
 
-    /* -- HERO SECTION -- */
+    nav a {
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary-color);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
     .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
       text-align: center;
-      color: #fff;
-      padding: 3rem 1rem;
-      /* CUSTOMIZE HERE: Replace with a large, high-quality background image of your landscaping work */
-      background: url('https://via.placeholder.com/1920x800?text=Landscaping+Hero+Image') center/cover no-repeat;
+      color: var(--white);
+      position: relative;
+      /* Change this path to your actual hero image location */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                  url('./images/hero-bg.jpg') center/cover no-repeat;
+      margin-top: -80px; /* offset for fixed header */
     }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      z-index: 1;
+    }
+
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      animation: fadeInUp 1s ease;
     }
+
     .hero p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease 0.3s;
+      opacity: 0;
+      animation-fill-mode: forwards;
     }
+
     .cta-button {
       display: inline-block;
-      background-color: #ff9900;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 3px;
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 50px;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
+
     .cta-button:hover {
       background-color: #e68a00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
-    /* -- MAIN SECTIONS -- */
+    /* Section Base */
     .section {
-      padding: 3rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 6rem 0;
     }
+
     .section-title {
       text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      font-size: 2.5rem;
+      color: var(--primary-color);
     }
 
-    /* -- PORTFOLIO GRID -- */
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      margin: 1rem auto;
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Portfolio Section */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
     }
+
     .portfolio-item {
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      position: relative;
+      border-radius: 10px;
       overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      aspect-ratio: 3/2;
     }
+
     .portfolio-item img {
       width: 100%;
-      display: block;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
     }
+
     .item-info {
-      padding: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 1.5rem;
+      color: var(--white);
+      transform: translateY(100%);
+      transition: var(--transition);
     }
 
-    /* -- TESTIMONIALS -- */
+    .portfolio-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .portfolio-item:hover .item-info {
+      transform: translateY(0);
+    }
+
+    /* Testimonials Section */
     .testimonials {
-      background-color: #f7f7f7; /* subtle background for emphasis */
-      text-align: center;
+      background-color: var(--light-bg);
     }
+
+    .testimonial-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
     .testimonial {
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .testimonial p {
       font-style: italic;
+      margin-bottom: 1rem;
+      position: relative;
+      font-size: 1.1rem;
     }
 
-    /* -- FOOTER -- */
-    footer {
-      background: #2b4d2b;
-      color: #fff;
+    .testimonial p::before,
+    .testimonial p::after {
+      content: '"';
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .client-info strong {
+      color: var(--primary-color);
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* -- RESPONSIVE -- */
+    .contact-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--secondary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
+      .nav-toggle {
+        display: block;
       }
-      .hero p {
-        font-size: 1rem;
+
+      nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--primary-color);
+        transition: var(--transition);
       }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
+
+      nav.active {
+        left: 0;
       }
+
       nav ul {
-        margin-top: 0.5rem;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        gap: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
-<body>
 
+<body>
   <!-- HEADER -->
   <header>
-    <!-- CUSTOMIZE HERE: Replace "Landscaping Co." with your company name or logo image -->
-    <div class="site-title">Landscaping Co.</div>
-    <nav>
-      <ul>
-        <!-- If you have multiple pages, link them here or keep them as anchor links to sections -->
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container header-content">
+      <div class="site-title">Landscaping Co.</div>
+      <div class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <!-- HERO SECTION -->
   <section class="hero">
-    <!-- CUSTOMIZE HERE: Adjust your main call-to-action headline and subtext -->
-    <h1>Transform Your Outdoor Space</h1>
-    <p>Professional Landscaping &amp; Lawn Care Services in [Your City]</p>
-    <!-- Anchor link to contact section below -->
-    <a class="cta-button" href="#contact">Request a Quote</a>
+    <div class="hero-content">
+      <h1>Transform Your Outdoor Space</h1>
+      <p>Professional Landscaping & Lawn Care Services in [Your City]</p>
+      <a href="#contact" class="cta-button">Get Free Quote</a>
+    </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- SERVICES SECTION -->
   <section class="section" id="services">
-    <h2 class="section-title">Our Services</h2>
-    <p style="text-align:center;">
-      <!-- CUSTOMIZE HERE: List the key services you offer with short descriptions -->
-      We provide high-quality landscaping services including design, lawn care, hardscaping, and more.
-      Serving [Your City] and surrounding areas.
-    </p>
-    <div style="margin:2rem auto;max-width:800px;">
-      <h3>Lawn Care &amp; Maintenance</h3>
-      <p>Keep your lawn looking its best year-round with our mowing, fertilization, and weed control services.</p>
-      
-      <h3>Landscape Design &amp; Installation</h3>
-      <p>We create stunning outdoor spaces with custom designs, plant selection, and installation for any size property.</p>
-      
-      <h3>Hardscaping (Patios, Walkways, Retaining Walls)</h3>
-      <p>From elegant patio areas to practical walkways, our hardscaping solutions add both functionality and beauty.</p>
-      
-      <h3>Seasonal Services</h3>
-      <p>Fall cleanup, winter preparation, and spring planting — we’ll keep your yard in top shape every season.</p>
-    </div>
-    <div style="text-align:center;">
-      <a class="cta-button" href="#contact">Request a Quote</a>
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-leaf service-icon"></i>
+          <h3>Lawn Care & Maintenance</h3>
+          <p>Professional mowing, fertilization, and weed control services to keep your lawn healthy and beautiful year-round.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-clock service-icon"></i>
+          <h3>Seasonal Services</h3>
+          <p>Comprehensive seasonal care including fall cleanup, winter preparation, and spring revival services.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-tree service-icon"></i>
+          <h3>Garden Care</h3>
+          <p>Expert garden maintenance, pruning, and plant health care to keep your garden thriving in every season.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
+  <!-- PORTFOLIO SECTION -->
   <section class="section" id="portfolio">
-    <h2 class="section-title">Our Work</h2>
-    <div class="portfolio-grid">
-      <!-- CUSTOMIZE HERE: Replace placeholder images with your own project photos -->
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/600x400?text=Project+1" alt="Project 1">
-        <div class="item-info">
-          <h3>Front Yard Makeover</h3>
+    <div class="container">
+      <h2 class="section-title">Our Work</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <!-- Replace './images/project1.jpg' with your real file path -->
+          <img src="./images/project1.jpg" alt="Front Yard Transformation">
+          <div class="item-info">
+            <h3>Front Yard Transformation</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="./images/project2.jpg" alt="Backyard Patio & Garden">
+          <div class="item-info">
+            <h3>Backyard Patio &amp; Garden</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="./images/project3.jpg" alt="Seasonal Flower Bed">
+          <div class="item-info">
+            <h3>Seasonal Flower Bed</h3>
+          </div>
         </div>
       </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/600x400?text=Project+2" alt="Project 2">
-        <div class="item-info">
-          <h3>Backyard Oasis</h3>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/600x400?text=Project+3" alt="Project 3">
-        <div class="item-info">
-          <h3>Garden Landscaping</h3>
-        </div>
-      </div>
-      <!-- Add more items or use a gallery approach if you have additional photos -->
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS SECTION -->
   <section class="section testimonials" id="testimonials">
-    <h2 class="section-title">What Our Clients Say</h2>
-    <!-- CUSTOMIZE HERE: Replace these quotes with real testimonials -->
-    <div class="testimonial">
-      <p>"They transformed our backyard into a stunning garden retreat. Highly recommended!"</p>
-      <strong>- Sarah G.</strong>
-    </div>
-    <div class="testimonial">
-      <p>"Professional, on time, and the lawn has never looked better!"</p>
-      <strong>- Mark P.</strong>
+    <div class="container">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial">
+          <p>"They transformed our backyard into a beautiful retreat. Highly recommend their lawn care services!"</p>
+          <div class="client-info">
+            <strong>- Sarah G.</strong>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>"Professional, on time, and the lawn has never looked better!"</p>
+          <div class="client-info">
+            <strong>- Mark P.</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT SECTION -->
   <section class="section" id="contact">
-    <h2 class="section-title">Ready to Transform Your Outdoor Space?</h2>
-    <p style="text-align:center;">
-      Contact us to schedule a consultation or request a free quote. We’ll bring your vision to life!
-    </p>
-    <div style="max-width:600px; margin:2rem auto; text-align:center;">
-      <!-- CUSTOMIZE HERE: Add your preferred contact method. 
-           For a static GitHub Pages site, you can use a mailto link or a form service like Formspree. -->
-      <p>Email us at:
-        <a href="mailto:info@landscapingco.com" class="cta-button">
-          info@landscapingco.com
-        </a>
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p style="text-align:center;">
+        Let us help you bring your landscaping vision to life. Fill out the form below or reach us directly.
       </p>
-      <p>or call us at <strong>(555) 123-4567</strong></p>
-      <p>Address: <strong>123 Greenway, Springfield, MA</strong></p>
+      
+      <!-- EXAMPLE CONTACT GRID (Email, Phone, Address) -->
+      <div class="contact-grid">
+        <div class="contact-card">
+          <i class="fas fa-envelope contact-icon"></i>
+          <h3>Email</h3>
+          <!-- Replace with your actual email -->
+          <p><a href="mailto:info@landscapingco.com">info@landscapingco.com</a></p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-phone contact-icon"></i>
+          <h3>Call Us</h3>
+          <!-- Replace with your actual phone number -->
+          <p>(555) 123-4567</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-map-marker-alt contact-icon"></i>
+          <h3>Address</h3>
+          <!-- Replace with your actual address -->
+          <p>123 Greenway, Springfield, MA</p>
+        </div>
+      </div>
+
+      <!-- OPTIONAL: If you want a contact form, embed via Formspree or another service -->
+      <!-- <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST" style="max-width: 600px; margin: 2rem auto;">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
+
+        <button type="submit" class="cta-button" style="margin-top: 1rem;">Send Message</button>
+      </form> -->
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <!-- CUSTOMIZE HERE: Add your real phone & address for local SEO NAP consistency -->
-    <p>Landscaping Co. &bull; (555) 123-4567 &bull; 123 Greenway, Springfield, MA</p>
-    <p>&copy; <span id="year"></span> Landscaping Co. All rights reserved.</p>
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>About Us</h3>
+        <p>
+          We are a local landscaping company dedicated to transforming outdoor spaces 
+          into beautiful and functional landscapes. Whether you need lawn care or seasonal 
+          maintenance, we’re here to help.
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul style="list-style:none;">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p>Stay connected on social media.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright">
+        <p>&copy; <span id="year"></span> Landscaping Co. | All Rights Reserved</p>
+      </div>
+    </div>
   </footer>
 
   <script>
-    // Set current year in footer automatically
+    // Mobile Nav Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('nav');
+
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    // Update year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
